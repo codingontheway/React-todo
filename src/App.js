@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header'
 import Input from './components/Input'
 import Table from './components/Table'
+import { identity } from 'rxjs';
 
 class App extends Component{
 
@@ -35,12 +36,30 @@ class App extends Component{
     
   }
 
+  onCheckToggle = (id) => {
+    this.setState({
+      todos : this.state.todos.map(todo => {
+        if (todo.id === id){
+          todo.checked = !todo.checked
+        }
+        return todo
+      })
+    })
+    
+  }
+
+  onDeleteClick = (id) => {
+    this.setState({
+      todos : this.state.todos.filter (todo => todo.id !== id)
+    })
+  }
+
   render(){
     return (
       <div >
         <Header />
         <Input onChange={this.onInputChange} onSubmit={this.onInputSubmit} input={this.state.input} />
-        <Table todos={this.state.todos} />
+        <Table todos={this.state.todos} onCheckToggle={this.onCheckToggle} onDeleteClick={this.onDeleteClick}/>
       </div>
     );
   }

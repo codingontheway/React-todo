@@ -5,9 +5,10 @@ export default function TodoItem(props) {
   return (
     <tr>
         <th scope="row">{id}</th>
-        <td>{text}</td>
-        <td><input type="checkbox" /></td>
-        <td><button type="button" className="btn btn-danger">DELETE</button></td>
+        <td style={checked ? {textDecoration : 'line-through'} : {}}>{text}</td>
+        <td><input type="checkbox" onChange={props.checkToggle.bind(this,id)}/></td>
+        <td><button type="button" className="btn btn-success" onClick={props.deleteClick.bind(this,id)}>DELETE</button></td>
     </tr>
   )
 }
+

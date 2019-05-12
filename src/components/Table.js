@@ -15,7 +15,7 @@ export default function Table(props) {
           </tr>
         </thead>
         <tbody>
-          {props.todos.map(todo => <TodoItem key={todo.id} todo={todo} /> )}
+          {props.todos.map(todo => <TodoItem key={todo.id} todo={todo} checkToggle={props.onCheckToggle} deleteClick={props.onDeleteClick}/> )}
           {/* <tr>
             <th scope="row">1</th>
             <td>Mark</td>
